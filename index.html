@@ -14,22 +14,23 @@
 <nav><div class="brand">✦ PIXEL <span>ZONE</span></div><div><a href="#games">Games</a><a href="#add">Add games</a></div></nav>
 <header class="hero"><div class="kicker">Your browser game hub</div><h1>PRESS PLAY.<br><span class="gradient">ENTER THE ZONE.</span></h1><p>A neon-themed directory for your favorite browser games. Search the collection, filter by category, and open games on their original websites.</p><a class="btn" href="#games">Explore games ↓</a><a class="btn alt" href="#add">How to add games</a></header>
 <section id="games"><h2>Game directory</h2><p class="sub">Pick a game collection to get started. Add individual games to the list in this file anytime.</p><div class="controls"><input id="search" type="search" placeholder="Search games..." aria-label="Search games"><select id="category" aria-label="Filter category"><option>All</option><option>Arcade</option><option>Puzzle</option><option>Multiplayer</option><option>Strategy</option><option>Indie</option><option>Other</option></select></div><div class="grid" id="grid" aria-live="polite"></div></section>
-<section id="add"><h2>Add your own games</h2><p class="sub">Open this file on GitHub, click the pencil icon, and find <code>const games = [</code>. Copy a game entry, change its details and URL, then commit the changes.</p><div class="note">This page is a directory of links; games open on their original websites and are not hosted here. Only share links you are allowed to use. School or network restrictions may still apply; this site does not bypass them.</div></section>
-<footer><span>✦ Pixel Zone</span><span>Neon games directory · Play responsibly</span></footer>
-</main>
-<script>
-/* ADD GAMES HERE. Copy an entry and edit its fields.
-   Categories: Arcade, Puzzle, Multiplayer, Strategy, Indie, Other.
-   Example: {name:"My Game",category:"Arcade",description:"Short description.",url:"https://example.com",emoji:"🎮"},
-*/
-const games = [
- {name:"Poki — All Games",category:"Other",description:"Browse a broad collection of free browser games.",url:"https://poki.com/",emoji:"🎮"},
+<section id="add"><h2>Add your own games</h2><p class="sub">Open this file on GitHub, click the pencil icon, and find <code>const games = [
+ {name:"Google Feud",category:"Puzzle",description:"Guess popular Google search completions.",url:"https://googlefeud.com/",emoji:"🔎"},
+ {name:"Google Snake",category:"Arcade",description:"Classic snake-style arcade game.",url:"https://www.google.com/fbx?fbx=snake_arcade",emoji:"🐍"},
+ {name:"Prodigy Math",category:"Puzzle",description:"Math-based learning adventure; sign-in may be required.",url:"https://www.prodigygame.com/",emoji:"🧙"},
+ {name:"Scratch",category:"Indie",description:"Explore and play community-made projects.",url:"https://scratch.mit.edu/",emoji:"🐱"},
+ {name:"ABCya",category:"Puzzle",description:"Educational games and activities.",url:"https://www.abcya.com/",emoji:"📚"},
+ {name:"Neal.fun — Infinite Craft",category:"Arcade",description:"Combine elements to discover new creations.",url:"https://neal.fun/infinite-craft/",emoji:"🌎"},
+ {name:"OvO",category:"Arcade",description:"Precision platforming challenge.",url:"https://www.mortgagecalculator.org/money-games/ovo/",emoji:"🏃"},
+ {name:"Sprite Fusion — Destroy",category:"Arcade",description:"Open the game page provided in your list.",url:"https://destroy.spritefusion.com/",emoji:"💥"},
+ {name:"Neocities",category:"Indie",description:"Explore personal websites and creative projects.",url:"https://neocities.org/",emoji:"🌐"},
+ {name:"Poki — All Games",category:"Other",description:"Browse a broad collection of browser games.",url:"https://poki.com/",emoji:"🎮"},
  {name:"Poki — Two Player",category:"Multiplayer",description:"Find games made for two players.",url:"https://poki.com/en/two-player",emoji:"👾"},
  {name:"CrazyGames — Multiplayer",category:"Multiplayer",description:"Browse online multiplayer game collections.",url:"https://www.crazygames.com/t/multiplayer",emoji:"🕹️"},
  {name:"CrazyGames — Puzzle",category:"Puzzle",description:"Logic, matching, and brain-teaser games.",url:"https://www.crazygames.com/t/puzzle",emoji:"🧩"},
  {name:"Coolmath Games",category:"Strategy",description:"Explore logic, strategy, and casual games.",url:"https://www.coolmathgames.com/",emoji:"♟️"},
  {name:"itch.io — HTML5 Games",category:"Indie",description:"Discover independent games that run in a browser.",url:"https://itch.io/games/html5",emoji:"🌌"}
-];
+;
 const grid=document.getElementById("grid"),search=document.getElementById("search"),category=document.getElementById("category");
 function render(){const q=search.value.trim().toLowerCase(),c=category.value;const list=games.filter(g=>(c==="All"||g.category===c)&&(g.name+" "+g.description+" "+g.category).toLowerCase().includes(q));grid.replaceChildren();if(!list.length){const e=document.createElement("div");e.className="empty";e.textContent="No results. Try another search or category.";grid.append(e);return;}for(const g of list){const card=document.createElement("article");card.className="card";const top=document.createElement("div");top.className="top";const em=document.createElement("span");em.className="emoji";em.textContent=g.emoji||"🎮";const tag=document.createElement("span");tag.className="tag";tag.textContent=g.category;top.append(em,tag);const h=document.createElement("h3");h.textContent=g.name;const p=document.createElement("p");p.textContent=g.description;const a=document.createElement("a");a.className="play";a.textContent="Open game ↗";a.href=g.url;a.target="_blank";a.rel="noopener noreferrer";card.append(top,h,p,a);grid.append(card);}}
 search.addEventListener("input",render);category.addEventListener("change",render);render();
